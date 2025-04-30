@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const logger = require('morgan');
 const session = require('express-session');
+require("dotenv").config();
 
 var authRouter = require('./routes/authRouter');
 var teacherRouter = require('./routes/teacherRouter');
