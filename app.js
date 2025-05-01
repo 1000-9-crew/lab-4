@@ -9,7 +9,6 @@ var authRouter = require('./routes/authRouter');
 var teacherRouter = require('./routes/teacherRouter');
 var studentRouter = require('./routes/studentRouter');
 var homeRouter = require('./routes/homeRouter');
-var fileRouter = require('./routes/fileRouter');
 
 var app = express();
 
@@ -30,7 +29,6 @@ app.use(
   })
 )
 
-app.use("/demo", fileRouter);
 app.use("/", homeRouter);
 app.use("/auth", authRouter);
 app.use("/student", studentRouter);
