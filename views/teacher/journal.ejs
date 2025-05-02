@@ -9,9 +9,7 @@
 </head>
 
 <body>
-    <a href="/"><h1>Е-щоденник 🎰</h1></a>
-    <a href="/auth/logout"><button>вийти з акаунту 😎</button></a>
-    <p><%=user.name%> - <%=user.role%></p>
+    <%- include('header', {user}) %>
 
     <h2>Предмет: <a href="/teacher/subjects/<%= subject.id %>/"><u><%= subject.name %></u></a></h2>
     <h2>Заняття: <i><%= lesson.name %></i></h2>
