@@ -243,12 +243,26 @@ exports.removeEnrollmentBySubjectIdAndStudentId = async (subjectId, studentId) =
     const client = await pool.connect();
     try {
         await client.query("BEGIN");
-        const query = `
+
+        // Delete marks of the student for lessons in the subject
+        const deleteMarksQuery = `
+            DELETE FROM "Mark"
+            WHERE "studentId" = $1 AND "lessonId" IN (
+                SELECT "id" FROM "Lesson" WHERE "subjectId" = $2
+            )
+        `;
+        await client.query(deleteMarksQuery, [studentId, subjectId]);
+
+        // throw new Error("ROLLBACK TEST");
+
+        // Delete enrollment
+        const deleteEnrollmentQuery = `
             DELETE FROM "Enrollment"
             WHERE "subjectId" = $1 AND "studentId" = $2
             RETURNING *
         `;
-        const result = await client.query(query, [subjectId, studentId]);
+        const result = await client.query(deleteEnrollmentQuery, [subjectId, studentId]);
+
         await client.query("COMMIT");
         return result.rowCount > 0;
     } catch (err) {
