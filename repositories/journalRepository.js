@@ -125,7 +125,7 @@ exports.insertLesson = async (lesson) => {
             VALUES ($1, $2, $3)
             RETURNING *
         `;
-        const values = [lesson.subjectId, lesson.name, lesson.date.toISOString().split('T')[0]]; // Format date to YYYY-MM-DD
+        const values = [lesson.subjectId, lesson.name, lesson.date];
         const result = await client.query(query, values);
         await client.query("COMMIT");
         return Lesson.fromJson(result.rows[0]);
