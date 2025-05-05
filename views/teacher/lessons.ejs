@@ -44,7 +44,7 @@
             <h2>Студенти курсу</h2>
             <ul>
                 <% students.enrolled.forEach(student => { %>
-                    <li class="fine-box"><%=student.name%>
+                    <li><%=student.name%>
                         <form action="unenrollStudent" method="post" class="inline-form">
                             <input type="hidden" name="studentId" value="<%=student.id%>" />
                             <input type="hidden" name="subjectId" value="<%=subject.id%>" />
