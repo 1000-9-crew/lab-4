@@ -17,4 +17,14 @@ pg.types.setTypeParser(1082, (val) => val);
 
 const pool = new pg.Pool(config);
 
+// check connection to DB
+pool.query('SELECT NOW()')
+.then((res) => {
+    console.log('Connected to DB:', res.rows[0].now);
+})
+.catch((err) => {
+    console.error('Error connecting to DB:', err);
+    process.exit(1);
+});
+
 module.exports = pool;

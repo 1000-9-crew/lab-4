@@ -56,7 +56,7 @@
 
             <div class="fine-box">
                 <form action="enrollStudent" method="post">
-                    <select name="studentId">
+                    <select name="studentId" required>
                         <% students.unenrolled.forEach(student => { %>
                             <option value="<%=student.id%>"><%=student.name%></option>
                         <% }) %>

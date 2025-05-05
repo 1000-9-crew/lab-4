@@ -35,44 +35,6 @@ exports.insert = async (userCreateDTO) => {
     }
 };
 
-// exports.update = async (id, userUpdateDTO) => {
-//     const client = await pool.connect();
-//     try {
-//         await client.query("BEGIN");
-//         const query = `
-//             UPDATE "User"
-//             SET "name" = $1, "login" = $2, "password" = $3, "role" = $4
-//             WHERE "id" = $5
-//             RETURNING *`;
-//         const values = [userUpdateDTO.name, userUpdateDTO.login, userUpdateDTO.password, userUpdateDTO.role, id];
-//         const result = await client.query(query, values);
-//         await client.query("COMMIT");
-//         return result.rows.length ? User.fromJson(result.rows[0]) : null;
-//     } catch (err) {
-//         await client.query("ROLLBACK");
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-// };
-
-// exports.delete = async (id) => {
-//     const client = await pool.connect();
-//     try {
-//         await client.query("BEGIN");
-//         const query = 'DELETE FROM "User" WHERE "id" = $1 RETURNING *';
-//         const values = [id];
-//         const result = await client.query(query, values);
-//         await client.query("COMMIT");
-//         return result.rows.length ? User.fromJson(result.rows[0]) : null;
-//     } catch (err) {
-//         await client.query("ROLLBACK");
-//         throw err;
-//     } finally {
-//         client.release();
-//     }
-// };
-
 exports.findAllStudents = async () => {
     const query = 'SELECT * FROM "User" WHERE "role" = \'student\'';
     const result = await pool.query(query);
