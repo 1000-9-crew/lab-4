@@ -44,7 +44,7 @@ exports.findMarksByStudentIdAndSubjectId = async (studentId, subjectId) => {
     const query = `
         SELECT l.*, m."mark", m."attendance"
         FROM "Lesson" l
-        LEFT JOIN "Mark" m ON l.id = m."lessonId" AND m."studentId" = $1
+        INNER JOIN "Mark" m ON l.id = m."lessonId" AND m."studentId" = $1
         WHERE l."subjectId" = $2
     `;
     const result = await pool.query(query, [studentId, subjectId]);
